@@ -1,0 +1,33 @@
+<div>
+    <p appHighlightDir>Heroes:</p>
+    <div>Temperature: <input [(ngModel)]="degree" ng-init="degree='celcius'"></div>
+    <ul>
+        <li appHighlightDir *ngFor="let user of users">
+            {{ user.id }} || {{user.name}} || {{user.temp | temperature:degree}}
+        </li>
+    </ul>
+</div>
+
+<button (click)="getUsersProfile()">Load profiles</button>
+
+<table class="table-responsive">
+    <thead>
+        <tr>
+            <th class="col-xs-1">id</th>
+            <th class="col-xs-2">Name</th>
+            <th class="col-xs-2">Mail</th>
+            <th class="col-xs-2">ip_addres</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let profile of profiles">
+            <td class="col-xs-2 cap">{{ profile.id }}</td>
+            <td class="col-xs-2 cap">
+                <p *ngIf="profile.gender === 'Male'">Mr {{profile.first_name}} {{profile.last_name}}</p>
+                <p *ngIf="profile.gender === 'Female'">Ms {{profile.first_name}} {{profile.last_name}}</p>
+            </td>
+            <td class="col-xs-2 strong">{{profile.email}}</td>
+            <td class="col-xs-2">{{profile.ip_address}}</td>
+        </tr>
+    </tbody>
+</table>
